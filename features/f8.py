@@ -1,6 +1,6 @@
 import json
 
-import log_store
+import core.log_store as log_store
 
 
 def f8():

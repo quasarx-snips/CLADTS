@@ -1,4 +1,7 @@
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
+data/cladts_logs.json
+data/security_report.txt
+.vscode/
+.idea/

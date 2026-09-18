@@ -27,7 +27,7 @@ log_keys = [
     "description",
 ]
 
-SAVE_FILE = "cladts_logs.json"
+SAVE_FILE = "data/cladts_logs.json"
 
 
 def now_timestamp():
@@ -111,3 +111,45 @@ def is_valid_log(record):
     if record.get("risk_level") not in risk_levels:
         return False
     return True
+
+def load_logs(path):
+    
+
+    import json
+
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError) as error:
+        print("Could not load file: " + str(error))
+        return 0
+
+    if not isinstance(data, list):
+        print("File does not contain a list of logs.")
+        return 0
+
+    loaded = 0
+    for item in data:
+        if is_valid_log(item):
+            logs.append(item)
+            loaded += 1
+
+    return loaded
+
+
+def save_logs(path):
+    
+    import json
+
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(logs, f, indent=2)
+        return True
+    except (OSError, TypeError, ValueError) as error:
+        print("Could not save file: " + str(error))
+        return False
+
+LOGS = logs
+EVENT_TYPES = event_types
+STATUSES = statuses
+RISK_LEVELS = risk_levels

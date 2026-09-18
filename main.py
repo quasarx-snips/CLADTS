@@ -36,6 +36,6 @@ while True:
         break
 #final error checking for module and function existence
     try:
-        getattr(importlib.import_module(f"f{option}"), f"f{option}")()
+        getattr(importlib.import_module(f"features.f{option}"), f"f{option}")()
     except Exception as e:
         print(f"Error: Could not find implementation file or function for option {option}.")
